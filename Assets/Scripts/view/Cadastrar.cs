@@ -1,17 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Cadastrar : MonoBehaviour
 {
     Authentication authentication = new Authentication();
 
-    public GameObject UICadastrar,UIMainMenu;
+    public GameObject UICadastrar;
 
-    public InputField loginInput, passwordInput;
+    public InputField loginInput, passwordInput, nomeInput, emailInput, cpfInput, rgInput, nascimentoInput;
 
-    string login, password;
+    string login, password, nome, email;
+    long cpf, rg, nascimento;
 
     void Start()
     {
@@ -22,15 +25,18 @@ public class Cadastrar : MonoBehaviour
     {        
         login = loginInput.text;
         password = passwordInput.text;
-        bool authOk = authentication.cadastroInit(login, password);
+        nome = nomeInput.text;
+        email = emailInput.text;
+        cpf = Int64.Parse(cpfInput.text);
+        rg = Int64.Parse(rgInput.text);
+        nascimento = Int64.Parse(nascimentoInput.text);        
+
+        bool authOk = authentication.cadastroInit(login, password,nome,email,cpf,rg,nascimento);
 
         if (authOk == true)
         {
             //inicia o jogo para o menu principal
-            print("Cadastro realizado com sucesso!");
-
-            UICadastrar.active = false;
-            UIMainMenu.active = true;
+            print("Cadastro realizado com sucesso!");            
         }
         else if (authOk == false)
         {

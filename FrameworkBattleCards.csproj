@@ -286,9 +286,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\business\control\Validacoes.cs" />
+    <Compile Include="Assets\Scripts\business\model\Usuario.cs" />
     <Compile Include="Assets\Scripts\infra\Authentication.cs" />
+    <Compile Include="Assets\Scripts\infra\Database.cs" />
     <Compile Include="Assets\Scripts\view\Cadastrar.cs" />
+    <Compile Include="Assets\Scripts\view\EditarUsuario.cs" />
     <Compile Include="Assets\Scripts\view\Login.cs" />
+    <Compile Include="Assets\Scripts\view\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

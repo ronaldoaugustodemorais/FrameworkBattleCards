@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
     Authentication authentication = new Authentication();
+    Database data = new Database();
 
     public InputField loginInput, passwordInput;
-    public GameObject UIMainMenu,UILogin,UICadastrar;
+    public GameObject UILogin,UICadastrar,UIEditarUsuario;
 
     string login, password;
 
     void Start()
-    {
-        UIMainMenu.active = false;
+    {        
         UILogin.active = true;
-        UICadastrar.active = false;
+        //UICadastrar.active = false;
     }
 
 	public void LoginCapture()
@@ -28,8 +29,7 @@ public class Login : MonoBehaviour
         if(authOk == true)
         {
             //inicia o jogo para o menu principal
-            UIMainMenu.active = true;
-            UILogin.active = false;
+            SceneManager.LoadScene("MainMenu");            
         }
         else if (authOk == false)
         {
@@ -37,10 +37,18 @@ public class Login : MonoBehaviour
             //pode-se criar um aviso em um pop-up
         }
     }
+
     public void CadastroLocal()
     {
-        UIMainMenu.active = false;
+        UICadastrar.active = true;
         UILogin.active = false;
-        UICadastrar.active = true;        
+
+    }
+
+    public void EditarUsuario()
+    {        
+        data.pesquisarUsuario(loginInput.text);
+        UIEditarUsuario.active = true;
+        UILogin.active = false;
     }
 }
