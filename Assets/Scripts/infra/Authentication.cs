@@ -15,8 +15,8 @@ public class Authentication : MonoBehaviour
         //informando que nao foi possivel conectar-se com o usuario fornecido.
 
         //agora validar os usuarios por meio da camada control (validacoes)              
-        bool loginOk = validacoes.loginValidate(login);
-        bool passwordOk = validacoes.passwordValidate(password);
+        bool loginOk = validacoes.loginAuth(login);
+        bool passwordOk = validacoes.passwordAuth(password);
         if(loginOk == true)
         {
             print("Usuario verificado com sucesso");
@@ -25,21 +25,21 @@ public class Authentication : MonoBehaviour
                 print("Senha verificada com sucesso");
             }
             else if (passwordOk == false)
-            {
+            {         
                 print("Favor digitar uma senha valida:");
                 print("Minimo 6 caracteres, maximo de 18 caracteres, letras e numeros, ao menos 2 numeros");
             }
         }
         else if (loginOk == false)
-        {
+        {            
             print("Favor digitar um login valido:");
             print("Nao vazio, maximo de 15 caracteres, somente letras");
         }
         
-        return loginOk;
+        return passwordOk;
     }
 
-    public bool cadastroInit(string login, string password, string nome, string email, long cpf, long rg, long nascimento)
+    public bool cadastroInit(string login, string password, string img)
     {
         Validacoes validacoes = new Validacoes();
         
@@ -56,7 +56,7 @@ public class Authentication : MonoBehaviour
             if (passwordOk == true)
             {
                 print("Senha criada com sucesso");
-                Usuario novoUsuario = new Usuario(login, password, nome, email, cpf, rg, nascimento);
+                Usuario novoUsuario = new Usuario(login, password, img);
                 data.addUsuario(novoUsuario);
             }
             else if (passwordOk == false)
@@ -74,7 +74,7 @@ public class Authentication : MonoBehaviour
         return loginOk;
     }
 
-    public bool edicaoInit(string login, string password, string nome, string email, long cpf, long rg, long nascimento)
+    public bool edicaoInit(string login, string password, string img)
     {
         Validacoes validacoes = new Validacoes();
 
@@ -90,7 +90,7 @@ public class Authentication : MonoBehaviour
             print("Usuario editado com sucesso");
             if (passwordOk == true)
             {                
-                Usuario novoUsuario = new Usuario(login, password, nome, email, cpf, rg, nascimento);
+                Usuario novoUsuario = new Usuario(login, password, img);
                 data.editUsuario(novoUsuario);
             }
             else if (passwordOk == false)

@@ -10,14 +10,14 @@ public class Login : MonoBehaviour
     Database data = new Database();
 
     public InputField loginInput, passwordInput;
-    public GameObject UILogin,UICadastrar,UIEditarUsuario;
+    public GameObject UILogin,UICadastrar,UIEditarUsuario, popupErrorScreen;
 
     string login, password;
 
     void Start()
     {        
         UILogin.active = true;
-        //UICadastrar.active = false;
+        popupErrorScreen.active = false;        
     }
 
 	public void LoginCapture()
@@ -33,8 +33,9 @@ public class Login : MonoBehaviour
         }
         else if (authOk == false)
         {
-            //solicita que seja verificado os dados de login.
-            //pode-se criar um aviso em um pop-up
+            //solicita que seja verificado os dados de login.            
+            popupErrorScreen.active = true;
+
         }
     }
 
@@ -50,5 +51,12 @@ public class Login : MonoBehaviour
         data.pesquisarUsuario(loginInput.text);
         UIEditarUsuario.active = true;
         UILogin.active = false;
+    }
+
+    public void closePopupError()
+    {
+        loginInput.text = "";
+        passwordInput.text = "";
+        popupErrorScreen.active = false;
     }
 }

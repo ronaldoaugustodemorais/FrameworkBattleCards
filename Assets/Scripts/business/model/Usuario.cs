@@ -5,18 +5,14 @@ using System;
 
 public class Usuario : IComparable<Usuario>
 {
-    public string login, password, nome, email;
+    public string login, password, nome, email, img;
     public long cpf, rg, nascimento;
 
-    public Usuario(string newLogin, string newPassword, string newNome, string newEmail, long newCpf, long newRg, long newNascimento)
+    public Usuario(string newLogin, string newPassword, string newImg)
     {
         login = newLogin;
         password = newPassword;
-        nome = newNome;
-        email = newEmail;
-        cpf = newCpf;
-        rg = newRg;
-        nascimento = newNascimento;
+        img = newImg;        
     }
 
     public int CompareTo(Usuario other)
